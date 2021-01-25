@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+int bits[8];
+int main(){
+cout << "输入需要查询的信息" << endl;
+unsigned char number;
+
+
+    int index=0;
+    int cnt=1;
+    int x;
+    scanf("%hhd",&number);
+ 
+    for(int i=0;i<8;i++)
+    {
+     x=number%2;
+     number=number/2;
+     bits[i]=x;
+    }       //把输入的数从十进制转为二进制，并储存到数组
+    
+    for(int j=0;j<6;j++)     //对后6位逐个检验
+    {
+     if(bits[j]==1)    //二进制的数看成1000+100+10即2^3+2^2+2^1之和
+     {       for(int k=0;k<j;k++)
+             {
+              cnt=cnt*2;
+             }
+             index+=cnt;
+     }    cnt=1; 
+    }
+    
+    if(bits[7]==1){
+    cout << "女生，学号为" << index << endl;
+    }
+    else{
+    cout << "男生，学号为" << index << endl;
+    }
+ return 0;
+}
